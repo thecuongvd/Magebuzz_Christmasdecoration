@@ -1,0 +1,9 @@
+<?php
+if ($block->getScopeConfig('christmasdecoration/footer_image/enable')) {
+    $footerImgUrl = $block->getFooterImgUrl();
+    ?>
+    <div class="christmas_footer_img" style="background-image: url('<?php echo $footerImgUrl; ?>')">
+    </div>
+    <?php
+}
+?>

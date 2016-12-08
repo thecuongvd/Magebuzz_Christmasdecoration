@@ -1,0 +1,9 @@
+<?php
+if ($block->getScopeConfig('christmasdecoration/header_image/enable')) {
+    $headerImgUrl = $block->getHeaderImgUrl();
+    ?>
+    <div class="christmas_header_img" style="background-image: url('<?php echo $headerImgUrl; ?>')">
+    </div>
+    <?php
+}
+?>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @copyright Copyright (c) 2016 www.magebuzz.com
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <christmasdecoration>
+            <general>
+                <enable>1</enable>
+            </general>
+            <snowfall>
+                <enable>1</enable>
+                <num_of_snowflakes>30</num_of_snowflakes>
+                <speed>5</speed>
+                <min_size>10</min_size>
+                <max_size>50</max_size>
+            </snowfall>
+            <header_image>
+                <enable>1</enable>
+            </header_image>
+            <footer_image>
+                <enable>1</enable>
+            </footer_image>
+            <background_image>
+                <enable>1</enable>
+            </background_image>
+            <moving_image>
+                <enable>1</enable>
+                <duration>60</duration>
+                <speed>5</speed>
+                <direction>left_to_right</direction>
+            </moving_image>
+        </christmasdecoration>
+    </default>
+</config>

@@ -1,0 +1,17 @@
+
+.christmas_header_img {
+    height: 200px;
+    background-repeat: repeat-x;
+    background-position-y: top;
+}
+.christmas_footer_img {
+    height: 150px;
+    background-repeat: repeat-x;
+    background-position-y: bottom;
+}
+
+.christmas_moving_img {
+    position: fixed;
+    z-index: 1000;
+    display: none;
+}

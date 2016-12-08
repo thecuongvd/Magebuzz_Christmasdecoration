@@ -1,0 +1,19 @@
+.adminhtml-system-config-edit #row_christmasdecoration_snowfall_pattern td.value div.admin__field {
+    display: inline-block!important;
+}
+.adminhtml-system-config-edit #row_christmasdecoration_header_image_pattern td.value div.admin__field {
+    display: inline-block!important;
+}
+.adminhtml-system-config-edit #row_christmasdecoration_footer_image_pattern td.value div.admin__field {
+    display: inline-block!important;
+}
+.adminhtml-system-config-edit #row_christmasdecoration_background_image_pattern td.value div.admin__field {
+    display: inline-block!important;
+}
+.adminhtml-system-config-edit #row_christmasdecoration_moving_image_pattern td.value div.admin__field {
+    display: inline-block!important;
+}
+
+.adminhtml-system-config-edit .colorpicker {
+    z-index:1000;
+}

@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @copyright Copyright (c) 2016 www.magebuzz.com
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magebuzz" translate="label" sortOrder="1">
+            <label>Magebuzz Extensions</label>
+        </tab>
+        <section id="christmasdecoration" translate="label" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Christmas Decoration</label>
+            <tab>magebuzz</tab>
+            <resource>Magebuzz_Christmasdecoration::system_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInStore="1"
+                   showInWebsite="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable Decoration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="fromdate" translate="label" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>From Date</label>
+                    <frontend_model>Magebuzz\Christmasdecoration\Block\System\Config\DatePicker</frontend_model>
+                    <validate>validate-date</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="todate" translate="label" sortOrder="3" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>To Date</label>
+                    <frontend_model>Magebuzz\Christmasdecoration\Block\System\Config\DatePicker</frontend_model>
+                    <validate>validate-date</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="snowfall" translate="label" type="text" sortOrder="2" showInDefault="1" showInStore="1"
+                   showInWebsite="1">
+                <label>Snowfall</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pattern" translate="label" type="checkboxes" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Pattern</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\SnowfallPattern</source_model>
+                </field>
+                <field id="color1" translate="label" sortOrder="3" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Color 1</label>
+                    <frontend_model>Magebuzz\Christmasdecoration\Block\System\Config\Color</frontend_model>
+                </field>
+                <field id="color2" translate="label" sortOrder="4" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Color 2</label>
+                    <frontend_model>Magebuzz\Christmasdecoration\Block\System\Config\Color</frontend_model>
+                </field>
+                <field id="color3" translate="label" sortOrder="5" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Color 3</label>
+                    <frontend_model>Magebuzz\Christmasdecoration\Block\System\Config\Color</frontend_model>
+                </field>
+                <field id="image" translate="label comment" type="image" sortOrder="6" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Image</label>
+                    <comment><![CDATA[If you upload image, your image will be added to selected patterns (Allowed jpg, jpeg, gif, png)]]></comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">magebuzz/christmasdecoration/snowfall</upload_dir>
+                    <base_url type="media" scope_info="1">magebuzz/christmasdecoration/snowfall</base_url>
+                </field>
+                <field id="num_of_snowflakes" translate="label comment" sortOrder="7" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Number of Snowflakes</label>
+                    <validate>validate-number-range number-range-5-100</validate>
+                    <comment><![CDATA[Input number from 10 to 200]]></comment>
+                </field>
+                <field id="speed" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Speed</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\SnowfallSpeed</source_model>
+                    <comment><![CDATA[Higher the speed, faster the snowflakes will be drop]]></comment>
+                </field>
+                <field id="min_size" translate="label comment" sortOrder="9" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Minimum snowflake size (px)</label>
+                    <validate>validate-number-range number-range-5-100</validate>
+                    <comment><![CDATA[Input number from 5 to 100]]></comment>
+                </field>
+                <field id="max_size" translate="label comment" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Maximum snowflake size (px)</label>
+                    <validate>validate-number-range number-range-5-100</validate>
+                    <comment><![CDATA[Input number from 5 to 100]]></comment>
+                </field>
+            </group>
+            <group id="header_image" translate="label" type="text" sortOrder="3" showInDefault="1" showInStore="1"
+                   showInWebsite="1">
+                <label>Header Image</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pattern" translate="label" type="radios" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Pattern</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\HeaderImgPattern</source_model>
+                </field>
+                <field id="image" translate="label comment" type="image" sortOrder="3" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Image</label>
+                    <comment><![CDATA[If you upload image, your image will replace the selected pattern (Allowed jpg, jpeg, gif, png). Image should be smaller or equal than 200px height]]></comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">magebuzz/christmasdecoration/header</upload_dir>
+                    <base_url type="media" scope_info="1">magebuzz/christmasdecoration/header</base_url>
+                </field>
+            </group>
+            <group id="footer_image" translate="label" type="text" sortOrder="4" showInDefault="1" showInStore="1"
+                   showInWebsite="1">
+                <label>Footer Image</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pattern" translate="label" type="radios" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Pattern</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\FooterImgPattern</source_model>
+                </field>
+                <field id="image" translate="label comment" type="image" sortOrder="3" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Image</label>
+                    <comment><![CDATA[If you upload image, your image will replace the selected pattern (Allowed jpg, jpeg, gif, png). Image should be smaller or equal than 150px height]]></comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">magebuzz/christmasdecoration/footer</upload_dir>
+                    <base_url type="media" scope_info="1">magebuzz/christmasdecoration/footer</base_url>
+                </field>
+            </group>
+            <group id="background_image" translate="label" type="text" sortOrder="5" showInDefault="1" showInStore="1"
+                   showInWebsite="1">
+                <label>Background Image</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pattern" translate="label" type="radios" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Pattern</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\BackgroundImgPattern</source_model>
+                </field>
+                <field id="image" translate="label comment" type="image" sortOrder="3" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Image</label>
+                    <comment><![CDATA[If you upload image, your image will replace the selected pattern (Allowed jpg, jpeg, gif, png)]]></comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">magebuzz/christmasdecoration/background</upload_dir>
+                    <base_url type="media" scope_info="1">magebuzz/christmasdecoration/background</base_url>
+                </field>
+            </group>
+            <group id="moving_image" translate="label" type="text" sortOrder="6" showInDefault="1" showInStore="1"
+                   showInWebsite="1">
+                <label>Moving Image</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pattern" translate="label" type="radios" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Pattern</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\MovingImgPattern</source_model>
+                </field>
+                <field id="image" translate="label comment" type="image" sortOrder="3" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Image</label>
+                    <comment><![CDATA[If you upload image, your image will replace the selected pattern (Allowed jpg, jpeg, gif, png)]]></comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">magebuzz/christmasdecoration/moving</upload_dir>
+                    <base_url type="media" scope_info="1">magebuzz/christmasdecoration/moving</base_url>
+                </field>
+                <field id="duration" translate="label" sortOrder="4" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Duration (second)</label>
+                </field>
+                <field id="speed" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Speed</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\SnowfallSpeed</source_model>
+                    <comment><![CDATA[Higher the speed, faster the image will be move]]></comment>
+                </field>
+                <field id="direction" translate="label" type="select" sortOrder="6" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Direction</label>
+                    <source_model>Magebuzz\Christmasdecoration\Model\Config\Source\MovingImgDirection</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
