@@ -1,9 +1,20 @@
 <?php
-if ($block->getScopeConfig('christmasdecoration/header_image/enable')) {
+if ($block->getScopeConfig('christmasdecoration/header_image/enable') && $block->isEnableDecoration()) {
     $headerImgUrl = $block->getHeaderImgUrl();
-    ?>
-    <div class="christmas_header_img" style="background-image: url('<?php echo $headerImgUrl; ?>')">
-    </div>
-    <?php
+    if ($headerImgUrl) {
+        ?>
+        <script type="text/javascript">
+            'use strict';
+            require(['jquery'], function ($) {
+                $(document).ready(function () {
+                    if ($('header').find('.header.content').length > 0) {
+                        var headerImgUrl = '<?php echo $headerImgUrl; ?>';
+                        $('header').find('.header.content').css({'padding-top':'150px','background-repeat':'repeat-x','background-position-y':'top','max-width':'none'}).css('background-image', 'url("' + headerImgUrl + '")');
+                    }
+                });
+            });
+        </script>
+        <?php
+    }
 }
 ?>

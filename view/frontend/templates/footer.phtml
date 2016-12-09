@@ -1,9 +1,20 @@
 <?php
-if ($block->getScopeConfig('christmasdecoration/footer_image/enable')) {
+if ($block->getScopeConfig('christmasdecoration/footer_image/enable') && $block->isEnableDecoration()) {
     $footerImgUrl = $block->getFooterImgUrl();
-    ?>
-    <div class="christmas_footer_img" style="background-image: url('<?php echo $footerImgUrl; ?>')">
-    </div>
-    <?php
+    if ($footerImgUrl) {
+        ?>
+        <script type="text/javascript">
+            'use strict';
+            require(['jquery'], function ($) {
+                $(document).ready(function () {
+                    if ($('footer').length > 0) {
+                        var footerImgUrl = '<?php echo $footerImgUrl; ?>';
+                        $('footer').css({'padding-bottom':'150px','background-repeat':'repeat-x','background-position-y':'bottom','background-size':'cover'}).css('background-image', 'url("' + footerImgUrl + '")');
+                    }
+                });
+            });
+        </script>
+        <?php
+    }
 }
 ?>

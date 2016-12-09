@@ -1,204 +1,104 @@
 <?php
-if ($block->getScopeConfig('christmasdecoration/snowfall/enable')) {
+if ($block->getScopeConfig('christmasdecoration/snowfall/enable') && $block->isEnableDecoration()) {
     $snowfallImgUrls = $block->getSnowfallImgUrls();
-    $snowfallUrlArr = explode(',', $snowfallImgUrls);
+    if ($snowfallImgUrls) {
+        $numOfSnowflakes = $block->getScopeConfig('christmasdecoration/snowfall/num_of_snowflakes');
+        $speed = $block->getScopeConfig('christmasdecoration/snowfall/speed');
+        $minSize = $block->getScopeConfig('christmasdecoration/snowfall/min_size');
+        $maxSize = $block->getScopeConfig('christmasdecoration/snowfall/max_size');
+        $effect = $block->getScopeConfig('christmasdecoration/snowfall/effect');
+        ?>
+        <script type="text/javascript">
+        //        'use strict';
+            require(['jquery'], function ($) {
+                $(document).ready(function () {
+                    var numOfSnowflakes = <?php echo $numOfSnowflakes; ?>;
+                    numOfSnowflakes = numOfSnowflakes ? numOfSnowflakes : 30;
+                    var speed = <?php echo $speed; ?>;
+                    var interval = 100 / speed;
+                    var effect = '<?php echo $effect; ?>';
+                    var minSize = <?php echo $minSize; ?>;
+                    var maxSize = <?php echo $maxSize; ?>;
+                    var imgUrls = '<?php echo $snowfallImgUrls; ?>';
+                    var imgUrlArr = imgUrls.split(',');
+                    var imgUrlArrLen = imgUrlArr.length;
 
-    $color1 = $block->getScopeConfig('christmasdecoration/snowfall/color1');
-    $color2 = $block->getScopeConfig('christmasdecoration/snowfall/color2');
-    $color3 = $block->getScopeConfig('christmasdecoration/snowfall/color3');
-    $numOfSnowflakes = $block->getScopeConfig('christmasdecoration/snowfall/num_of_snowflakes');
-    $speed = $block->getScopeConfig('christmasdecoration/snowfall/speed');
-    $minSize = $block->getScopeConfig('christmasdecoration/snowfall/min_size');
-    $maxSize = $block->getScopeConfig('christmasdecoration/snowfall/max_size');
-    $image = $block->getScopeConfig('christmasdecoration/snowfall/image');
-    ?>
-    <script type="text/javascript">
-        'use strict';
-        require(['jquery'], function ($) {
-            $(document).ready(function () {
-                var numOfSnowflakes = <?php echo $numOfSnowflakes; ?>;
-                var speed = <?php echo $speed; ?>;
-                var minSize = <?php echo $minSize; ?>;
-                var maxSize = <?php echo $maxSize; ?>;
-                var color1 = '<?php echo $color1; ?>';
-                var color2 = '<?php echo $color2; ?>';
-                var color3 = '<?php echo $color3; ?>';
-                var image = '<?php echo $image; ?>';
-                var interval = 10 / speed;
-
-                for (var i = 0; i < numOfSnowflakes; i++) {
-                    do {
-                        var size = Math.ceil(Math.random() * maxSize);
-                    } while (size < minSize);
-                    var colorSelect = Math.ceil(Math.random() * 3);
-                    if (colorSelect == 1) {
-                        var color = color1;
-                    } else if (colorSelect == 1) {
-                        var color = color2;
-                    } else {
-                        var color = color3;
+                    for (var i = 0; i < numOfSnowflakes; i++)
+                    {
+                        do {
+                            var size = Math.ceil(Math.random() * maxSize);
+                        } while (size < minSize);
+                        var urlIndex = Math.floor(Math.random() * imgUrlArrLen);
+                        var url = imgUrlArr[urlIndex];
+                        if (effect == 'swing') {
+                            var count = Math.floor(Math.random() * 300);
+                        } else {
+                            var count = '';
+                        }
+                        var snowflakeHtml = '<img class="christmas snowflake" src="' + url + '" style="height:' + size + 'px; width:' + size + 'px;" data-count="' + count + '" />';
+                        $('body').append(snowflakeHtml);
                     }
-                    var url = '';
-                    var snowflakeHtml = '<img style="height:' + size + '; width:' + size + '; color:' + color + '; background-image:url(\'' + url + '\')" />';
-                }
-                var timer = setInterval(function () {
-                    falldown()
-                }, interval);
 
-                function falldown() {
+                    function InitSnowfall() {
+                        $('.christmas.snowflake').each(function () {
+                            var leftPos = Math.floor(Math.random() * ($(window).width() - $(this).width()));
+                            var topPos = Math.floor(Math.random() * ($(window).height() - $(this).height()));
+                            $(this).css({left: leftPos, top: topPos});
 
-                }
-            });
-        });
-    </script>
+                            var leftInc = (Math.random() * 10 > 5) ? 1 : -1;
+                            $(this).data('dir', leftInc);
+                        });
 
-    <script type="text/javascript">
-        var snow_img = "http://www.domain.com/snow.png";
-        var snow_no = 15;
-
-        if (typeof (window.pageYOffset) == "number")
-        {
-            snow_browser_width = window.innerWidth;
-            snow_browser_height = window.innerHeight;
-        } else if (document.body && (document.body.scrollLeft || document.body.scrollTop))
-        {
-            snow_browser_width = document.body.offsetWidth;
-            snow_browser_height = document.body.offsetHeight;
-        } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop))
-        {
-            snow_browser_width = document.documentElement.offsetWidth;
-            snow_browser_height = document.documentElement.offsetHeight;
-        } else
-        {
-            snow_browser_width = 500;
-            snow_browser_height = 500;
-        }
-
-        snow_dx = [];
-        snow_xp = [];
-        snow_yp = [];
-        snow_am = [];
-        snow_stx = [];
-        snow_sty = [];
-
-        for (i = 0; i < snow_no; i++)
-        {
-            snow_dx[i] = 0;
-            snow_xp[i] = Math.random() * (snow_browser_width - 50);
-            snow_yp[i] = Math.random() * snow_browser_height;
-            snow_am[i] = Math.random() * 20;
-            snow_stx[i] = 0.02 + Math.random() / 10;
-            snow_sty[i] = 0.7 + Math.random();
-            if (i > 0)
-                document.write("<\div id=\"snow_flake" + i + "\" style=\"position:absolute;z-index:" + i + "\"><\img src=\"" + snow_img + "\" border=\"0\"><\/div>");
-            else
-                document.write("<\div id=\"snow_flake0\" style=\"position:absolute;z-index:0\"><a href=\"http://peters1.dk/tools/snow.php\" target=\"_blank\"><\img src=\"" + snow_img + "\" border=\"0\"></a><\/div>");
-        }
-
-        function SnowStart()
-        {
-            for (i = 0; i < snow_no; i++)
-            {
-                snow_yp[i] += snow_sty[i];
-                if (snow_yp[i] > snow_browser_height - 50)
-                {
-                    snow_xp[i] = Math.random() * (snow_browser_width - snow_am[i] - 30);
-                    snow_yp[i] = 0;
-                    snow_stx[i] = 0.02 + Math.random() / 10;
-                    snow_sty[i] = 0.7 + Math.random();
-                }
-                snow_dx[i] += snow_stx[i];
-                document.getElementById("snow_flake" + i).style.top = snow_yp[i] + "px";
-                document.getElementById("snow_flake" + i).style.left = snow_xp[i] + snow_am[i] * Math.sin(snow_dx[i]) + "px";
-            }
-            snow_time = setTimeout("SnowStart()", 10);
-        }
-        SnowStart();
-
-
-
-        (function () {
-            function ready(fn) {
-                if (document.readyState != 'loading') {
-                    fn();
-                } else {
-                    document.addEventListener('DOMContentLoaded', fn);
-                }
-            }
-
-            function makeSnow(el) {
-                var ctx = el.getContext('2d');
-                var width = 0;
-                var height = 0;
-                var particles = [];
-
-                var Particle = function () {
-                    this.x = this.y = this.dx = this.dy = 0;
-                    this.reset();
-                }
-
-                Particle.prototype.reset = function () {
-                    this.y = Math.random() * height;
-                    this.x = Math.random() * width;
-                    this.dx = (Math.random() * 1) - 0.5;
-                    this.dy = (Math.random() * 0.5) + 0.5;
-                }
-
-                function createParticles(count) {
-                    if (count != particles.length) {
-                        particles = [];
-                        for (var i = 0; i < count; i++) {
-                            particles.push(new Particle());
-                        }
                     }
-                }
 
-                function onResize() {
-                    width = window.innerWidth;
-                    height = window.innerHeight;
-                    el.width = width;
-                    el.height = height;
+                    function Snowfall()
+                    {
+                        $('.christmas.snowflake').each(function (i) {
+                            var left = parseInt($(this).css('left'));
+                            var top = parseInt($(this).css('top'));
+                            if (effect == 'swing') {
+                                if (top >= $(window).height() || left >= $(window).width()) {
+                                    top = 0 - $(this).height();
+                                    left = Math.floor(Math.random() * ($(window).width() - $(this).width()));
+                                }
+                                var count = $(this).data('count');
+                                if (count == 300) {
+                                    $(this).data('dir', 0 - $(this).data('dir'));
+                                    count = 0;
+                                }
+                                $(this).data('count', count + 1);
+                                var leftInc = parseInt($(this).data('dir'));
+                                $(this).css({left: left + leftInc, top: top + 1});
 
-                    createParticles((width * height) / 10000);
-                }
+                            } else if (effect == 'cross') {
+                                if (top >= $(window).height() || left >= $(window).width()) {
+                                    top = 0 - $(this).height();
+                                    left = Math.floor(Math.random() * ($(window).width() - $(this).width()));
+                                }
+                                var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : 1;
+                                $(this).css({left: left + leftInc, top: top + 1});
 
-                function updateParticles() {
-                    ctx.clearRect(0, 0, width, height);
-                    ctx.fillStyle = '#f6f9fa';
+                            } else if (effect == 'suspended') {
+                                if (left == $(window).width()) {    //to right side
+                                    left = 0;
+                                }
+                                if (left + $(this).width() <= 0) {    //to left side
+                                    left = $(window).width();
+                                }
+                                var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : 1;
+                                $(this).css('left', left + leftInc);
+                            }
+                        });
 
-                    particles.forEach(function (particle) {
-                        particle.y += particle.dy;
-                        particle.x += particle.dx;
-
-                        if (particle.y > height) {
-                            particle.y = 0;
-                        }
-
-                        if (particle.x > width) {
-                            particle.reset();
-                            particle.y = 0;
-                        }
-
-                        ctx.beginPath();
-                        ctx.arc(particle.x, particle.y, 5, 0, Math.PI * 2, false);
-                        ctx.fill();
-                    });
-
-                    window.requestAnimationFrame(updateParticles);
-                }
-
-                onResize();
-                updateParticles();
-
-                window.addEventListener('resize', onResize);
-            }
-
-            ready(function () {
-                var canvas = document.getElementById('snow');
-                makeSnow(canvas);
+                    }
+                    InitSnowfall();
+                    setInterval(function () {
+                        Snowfall()
+                    }, interval);
+                });
             });
-        })();
-    </script>
-    <?php
+        </script>
+        <?php
+    }
 }
 ?>

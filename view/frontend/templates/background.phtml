@@ -1,19 +1,19 @@
 <?php
-
-if ($block->getScopeConfig('christmasdecoration/background_image/enable')) {
+if ($block->getScopeConfig('christmasdecoration/background_image/enable') && $block->isEnableDecoration()) {
     $backgroundImgUrl = $block->getBackgroundImgUrl();
-    ?>
-    <script type="text/javascript">
-        'use strict';
-        require(['jquery'], function ($) {
-            $(document).ready(function () {
-                var backgroundImgUrl = '<?php echo $backgroundImgUrl; ?>';
-                $('.page-wrapper').css('background-image', 'url("'+backgroundImgUrl+'")');
+    if ($backgroundImgUrl) {
+        ?>
+        <script type="text/javascript">
+            'use strict';
+            require(['jquery'], function ($) {
+                $(document).ready(function () {
+                    var backgroundImgUrl = '<?php echo $backgroundImgUrl; ?>';
+                    $('body').css('background-image', 'url("' + backgroundImgUrl + '")');
+                });
             });
-        });
-    </script>
+        </script>
 
-    <?php
-
+        <?php
+    }
 }
 ?>

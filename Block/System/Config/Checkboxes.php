@@ -2,11 +2,11 @@
 
 namespace Magebuzz\Christmasdecoration\Block\System\Config;
  
-class Checkbox extends \Magento\Config\Block\System\Config\Form\Field
+class Checkboxes extends \Magento\Config\Block\System\Config\Form\Field
 {
-    const CONFIG_PATH = 'christmasdecoration/group_id/checkbox';
+    const CONFIG_PATH = 'christmasdecoration/snowfall/pattern';
  
-    protected $_template = 'Magebuzz_Christmasdecoration::system/config/checkbox.phtml';
+    protected $_template = 'Magebuzz_Christmasdecoration::system/config/checkboxes.phtml';
  
     protected $_values = null;
 
@@ -30,7 +30,7 @@ class Checkbox extends \Magento\Config\Block\System\Config\Form\Field
         $values = [];
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
  
-        foreach ($objectManager->create('Magebuzz\Christmasdecoration\Model\Config\Source\Checkbox')->toOptionArray() as $value) {
+        foreach ($objectManager->create('Magebuzz\Christmasdecoration\Model\Config\Source\SnowfallPattern')->toOptionArray() as $value) {
             $values[$value['value']] = $value['label'];
         }
  
@@ -59,4 +59,5 @@ class Checkbox extends \Magento\Config\Block\System\Config\Form\Field
  
         return $this->_values;
     }
+    
 }

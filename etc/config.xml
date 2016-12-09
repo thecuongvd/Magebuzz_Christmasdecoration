@@ -17,6 +17,7 @@
                 <speed>5</speed>
                 <min_size>10</min_size>
                 <max_size>50</max_size>
+                <effect>swing</effect>
             </snowfall>
             <header_image>
                 <enable>1</enable>

@@ -10,9 +10,9 @@
                    template="header.phtml" before="header-wrapper" 
                    ifconfig="christmasdecoration/general/enable" />
         </referenceContainer>
-        <referenceContainer name="page.wrapper">
+        <referenceContainer name="footer-container">
             <block class="Magebuzz\Christmasdecoration\Block\Decoration" name="christmas.footer"
-                   template="footer.phtml" after="footer-container" 
+                   template="footer.phtml" after="-" 
                    ifconfig="christmasdecoration/general/enable" />
             <block class="Magebuzz\Christmasdecoration\Block\Decoration" name="christmas.moving"
                    template="moving.phtml" after="-" 

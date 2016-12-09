@@ -74,10 +74,13 @@ class Decoration extends \Magento\Framework\View\Element\Template {
             }
         } 
         $pattern = $this->getScopeConfig('christmasdecoration/header_image/pattern');
-//        $patternUrl = $this->_helper->getViewImageUrl('images/header/' . $pattern);
-        $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/header/' . $pattern);
-        $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
-        return $patternUrl;
+        if ($pattern) {
+//            $patternUrl = $this->_helper->getViewImageUrl('images/header/' . $pattern);
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/header/' . $pattern);
+            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            return $patternUrl;
+        }
+        return '';
     }
     
     public function getFooterImgUrl() {
@@ -89,9 +92,12 @@ class Decoration extends \Magento\Framework\View\Element\Template {
             }
         } 
         $pattern = $this->getScopeConfig('christmasdecoration/footer_image/pattern');
-        $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/footer/' . $pattern);
-        $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
-        return $patternUrl;
+        if ($pattern) {
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/footer/' . $pattern);
+            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            return $patternUrl;
+        }
+        return '';
     }
     
     public function getBackgroundImgUrl() {
@@ -103,9 +109,12 @@ class Decoration extends \Magento\Framework\View\Element\Template {
             }
         } 
         $pattern = $this->getScopeConfig('christmasdecoration/background_image/pattern');
-        $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/background/' . $pattern);
-        $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
-        return $patternUrl;
+        if ($pattern) {
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/background/' . $pattern);
+            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            return $patternUrl;
+        }
+        return '';
     }
     
     public function getMovingImgUrl() {
@@ -117,33 +126,35 @@ class Decoration extends \Magento\Framework\View\Element\Template {
             }
         } 
         $pattern = $this->getScopeConfig('christmasdecoration/moving_image/pattern');
-        $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/moving/' . $pattern);
-        $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
-        return $patternUrl;
+        if ($pattern) {
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/moving/' . $pattern);
+            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            return $patternUrl;
+        }
+        return '';
     }
-    
-    public function getSnowfallImgUrl() {
-        $url = '';
-        $uploadImgCfg = $this->getScopeConfig('christmasdecoration/snowfall/image');
-        if ($uploadImgCfg) {
-            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImgCfg,'magebuzz/christmasdecoration/snowfall/');
+
+    public function getSnowfallImgUrls() {
+        $images = [];
+        $uploadImg = $this->getScopeConfig('christmasdecoration/snowfall/image');
+        if ($uploadImg) {
+            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg,'magebuzz/christmasdecoration/snowfall/');
             if ($uploadImgUrl) {
-                $url = $uploadImgUrl;
+                $images[] = $uploadImgUrl;
             }
         } 
-        return $url;
-    }
-    
-    public function getSnowfallPatterns() {
-        $patterns = []; 
-        $patternCfg = $this->getScopeConfig('christmasdecoration/snowfall/pattern');
-        $patternArr = explode(',', $patternCfg);
-        foreach ($patternArr as $item) {
-            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/snowfall/' . $item);
-            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
-            $patterns[] = $patternUrl;
+        $pattern = $this->getScopeConfig('christmasdecoration/snowfall/pattern');
+        if ($pattern) {
+            $patternArr = explode(',', $pattern);
+            foreach ($patternArr as $item) {
+                $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/snowfall/' . $item);
+                $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+                $images[] = $patternUrl;
+            }
+            return implode(',', $images);
         }
-        return implode(',', $patterns);
+        return '';
     }
+
     
 }
