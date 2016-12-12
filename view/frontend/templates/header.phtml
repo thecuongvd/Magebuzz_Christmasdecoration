@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright Copyright (c) 2016 www.magebuzz.com
+ */
 if ($block->getScopeConfig('christmasdecoration/header_image/enable') && $block->isEnableDecoration()) {
     $headerImgUrl = $block->getHeaderImgUrl();
     if ($headerImgUrl) {
@@ -9,7 +12,7 @@ if ($block->getScopeConfig('christmasdecoration/header_image/enable') && $block-
                 $(document).ready(function () {
                     if ($('header').find('.header.content').length > 0) {
                         var headerImgUrl = '<?php echo $headerImgUrl; ?>';
-                        $('header').find('.header.content').css({'padding-top':'150px','background-repeat':'repeat-x','background-position-y':'top','max-width':'none'}).css('background-image', 'url("' + headerImgUrl + '")');
+                        $('header').find('.header.content').css({'padding-top': '150px', 'background-repeat': 'repeat-x', 'background-position-y': 'top', 'max-width': 'none'}).css('background-image', 'url("' + headerImgUrl + '")');
                     }
                 });
             });

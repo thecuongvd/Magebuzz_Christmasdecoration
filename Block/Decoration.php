@@ -22,10 +22,7 @@ class Decoration extends \Magento\Framework\View\Element\Template {
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context, 
-        \Magento\Framework\Stdlib\DateTime\DateTime $date, 
-        \Magebuzz\Christmasdecoration\Helper\Data $helper,
-        array $data = []
+    \Magento\Framework\View\Element\Template\Context $context, \Magento\Framework\Stdlib\DateTime\DateTime $date, \Magebuzz\Christmasdecoration\Helper\Data $helper, array $data = []
     ) {
         $this->_date = $date;
         $this->_scopeConfig = $context->getScopeConfig();
@@ -68,11 +65,11 @@ class Decoration extends \Magento\Framework\View\Element\Template {
     public function getHeaderImgUrl() {
         $uploadImg = $this->getScopeConfig('christmasdecoration/header_image/image');
         if ($uploadImg) {
-            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg,'magebuzz/christmasdecoration/header/');
+            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg, 'magebuzz/christmasdecoration/header/');
             if ($uploadImgUrl) {
                 return $uploadImgUrl;
             }
-        } 
+        }
         $pattern = $this->getScopeConfig('christmasdecoration/header_image/pattern');
         if ($pattern) {
 //            $patternUrl = $this->_helper->getViewImageUrl('images/header/' . $pattern);
@@ -82,15 +79,15 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         return '';
     }
-    
+
     public function getFooterImgUrl() {
         $uploadImg = $this->getScopeConfig('christmasdecoration/footer_image/image');
         if ($uploadImg) {
-            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg,'magebuzz/christmasdecoration/footer/');
+            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg, 'magebuzz/christmasdecoration/footer/');
             if ($uploadImgUrl) {
                 return $uploadImgUrl;
             }
-        } 
+        }
         $pattern = $this->getScopeConfig('christmasdecoration/footer_image/pattern');
         if ($pattern) {
             $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/footer/' . $pattern);
@@ -99,15 +96,15 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         return '';
     }
-    
+
     public function getBackgroundImgUrl() {
         $uploadImg = $this->getScopeConfig('christmasdecoration/background_image/image');
         if ($uploadImg) {
-            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg,'magebuzz/christmasdecoration/background/');
+            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg, 'magebuzz/christmasdecoration/background/');
             if ($uploadImgUrl) {
                 return $uploadImgUrl;
             }
-        } 
+        }
         $pattern = $this->getScopeConfig('christmasdecoration/background_image/pattern');
         if ($pattern) {
             $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/background/' . $pattern);
@@ -116,15 +113,15 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         return '';
     }
-    
+
     public function getMovingImgUrl() {
         $uploadImg = $this->getScopeConfig('christmasdecoration/moving_image/image');
         if ($uploadImg) {
-            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg,'magebuzz/christmasdecoration/moving/');
+            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg, 'magebuzz/christmasdecoration/moving/');
             if ($uploadImgUrl) {
                 return $uploadImgUrl;
             }
-        } 
+        }
         $pattern = $this->getScopeConfig('christmasdecoration/moving_image/pattern');
         if ($pattern) {
             $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/moving/' . $pattern);
@@ -138,11 +135,11 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         $images = [];
         $uploadImg = $this->getScopeConfig('christmasdecoration/snowfall/image');
         if ($uploadImg) {
-            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg,'magebuzz/christmasdecoration/snowfall/');
+            $uploadImgUrl = $this->_helper->getUploadImageUrl($uploadImg, 'magebuzz/christmasdecoration/snowfall/');
             if ($uploadImgUrl) {
                 $images[] = $uploadImgUrl;
             }
-        } 
+        }
         $pattern = $this->getScopeConfig('christmasdecoration/snowfall/pattern');
         if ($pattern) {
             $patternArr = explode(',', $pattern);
@@ -156,5 +153,4 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         return '';
     }
 
-    
 }

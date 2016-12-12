@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2016 www.magebuzz.com
  */
+
 namespace Magebuzz\Christmasdecoration\Model\Config\Source;
 
-class MovingImgPattern implements \Magento\Framework\Option\ArrayInterface 
-{
+class MovingImgPattern implements \Magento\Framework\Option\ArrayInterface {
 
     protected $_helper;
 
@@ -29,4 +30,5 @@ class MovingImgPattern implements \Magento\Framework\Option\ArrayInterface
             ['value' => 'moving_5.gif', 'label' => __('<img src="' . $url5 . '" height="50px" />')]
         ];
     }
+
 }

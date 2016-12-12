@@ -1,11 +1,13 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2016 www.magebuzz.com
  */
+
 namespace Magebuzz\Christmasdecoration\Model\Config\Source;
 
-class FooterImgPattern implements \Magento\Framework\Option\ArrayInterface 
-{
+class FooterImgPattern implements \Magento\Framework\Option\ArrayInterface {
+
     protected $_helper;
 
     public function __construct(
@@ -28,4 +30,5 @@ class FooterImgPattern implements \Magento\Framework\Option\ArrayInterface
             ['value' => 'footer_5.jpg', 'label' => __('<img src="' . $url5 . '" height="50px" />')]
         ];
     }
+
 }

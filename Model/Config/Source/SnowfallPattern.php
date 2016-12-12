@@ -1,21 +1,22 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2016 www.magebuzz.com
  */
+
 namespace Magebuzz\Christmasdecoration\Model\Config\Source;
 
-class SnowfallPattern
-{
+class SnowfallPattern {
+
     protected $_helper;
-    
+
     public function __construct(
     \Magebuzz\Christmasdecoration\Helper\Data $helper
     ) {
         $this->_helper = $helper;
     }
-    
-    public function toOptionArray()
-    {
+
+    public function toOptionArray() {
         $url1 = $this->_helper->getViewImageUrl('images/snowfall/snowfall_1.png');
         $url2 = $this->_helper->getViewImageUrl('images/snowfall/snowfall_2.png');
         $url3 = $this->_helper->getViewImageUrl('images/snowfall/snowfall_3.png');
@@ -39,4 +40,5 @@ class SnowfallPattern
             ['value' => 'snowfall_10.png', 'label' => __('<img src="' . $url10 . '" />')]
         ];
     }
+
 }

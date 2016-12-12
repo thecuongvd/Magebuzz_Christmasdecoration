@@ -1,32 +1,34 @@
 <?php
+
+/**
+ * @copyright Copyright (c) 2016 www.magebuzz.com
+ */
+
 namespace Magebuzz\Christmasdecoration\Block\System\Config;
-  
+
 use Magento\Framework\Registry;
 use Magento\Backend\Block\Template\Context;
-  
-class DatePicker extends \Magento\Config\Block\System\Config\Form\Field
-{
+
+class DatePicker extends \Magento\Config\Block\System\Config\Form\Field {
+
     /**
      * @var  Registry
      */
     protected $_coreRegistry;
-  
+
     /**
      * @param Context  $context
      * @param Registry $coreRegistry
      * @param array    $data
      */
     public function __construct(
-        Context $context,
-        Registry $coreRegistry,
-        array $data = []
+    Context $context, Registry $coreRegistry, array $data = []
     ) {
         $this->_coreRegistry = $coreRegistry;
         parent::__construct($context, $data);
     }
-  
-    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
-    {
+
+    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element) {
         //get configuration element
         $html = $element->getElementHtml();
         //check datepicker set or not
@@ -35,7 +37,7 @@ class DatePicker extends \Magento\Config\Block\System\Config\Form\Field
         }
         //add icon on datepicker 
         $html .= '<button type="button" style="display:none;" class="ui-datepicker-trigger '
-            .'v-middle" data-for="' . $element->getHtmlId() . '"><span>Select Date</span></button>';
+                . 'v-middle" data-for="' . $element->getHtmlId() . '"><span>Select Date</span></button>';
         // add datepicker with element by jquery
         $html .= '<script type="text/javascript">
             require(["jquery", "jquery/ui"], function ($) {
@@ -52,4 +54,5 @@ class DatePicker extends \Magento\Config\Block\System\Config\Form\Field
         // return datepicker element
         return $html;
     }
+
 }

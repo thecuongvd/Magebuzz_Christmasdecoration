@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
-<!--
-/**
-* @copyright Copyright (c) 2016 www.magebuzz.com
-*/
--->
+<!--@copyright Copyright (c) 2016 www.magebuzz.com-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
@@ -17,7 +13,7 @@
                 <speed>5</speed>
                 <min_size>10</min_size>
                 <max_size>50</max_size>
-                <effect>swing</effect>
+                <effect>cross</effect>
             </snowfall>
             <header_image>
                 <enable>1</enable>

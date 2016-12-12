@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright Copyright (c) 2016 www.magebuzz.com
+ */
 if ($block->getScopeConfig('christmasdecoration/footer_image/enable') && $block->isEnableDecoration()) {
     $footerImgUrl = $block->getFooterImgUrl();
     if ($footerImgUrl) {
@@ -9,7 +12,7 @@ if ($block->getScopeConfig('christmasdecoration/footer_image/enable') && $block-
                 $(document).ready(function () {
                     if ($('footer').length > 0) {
                         var footerImgUrl = '<?php echo $footerImgUrl; ?>';
-                        $('footer').css({'padding-bottom':'150px','background-repeat':'repeat-x','background-position-y':'bottom','background-size':'cover'}).css('background-image', 'url("' + footerImgUrl + '")');
+                        $('footer').css({'padding-bottom': '150px', 'background-repeat': 'repeat-x', 'background-position-y': 'bottom', 'background-size': 'cover'}).css('background-image', 'url("' + footerImgUrl + '")');
                     }
                 });
             });

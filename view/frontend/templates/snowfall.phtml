@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright Copyright (c) 2016 www.magebuzz.com
+ */
 if ($block->getScopeConfig('christmasdecoration/snowfall/enable') && $block->isEnableDecoration()) {
     $snowfallImgUrls = $block->getSnowfallImgUrls();
     if ($snowfallImgUrls) {
@@ -8,93 +11,102 @@ if ($block->getScopeConfig('christmasdecoration/snowfall/enable') && $block->isE
         $maxSize = $block->getScopeConfig('christmasdecoration/snowfall/max_size');
         $effect = $block->getScopeConfig('christmasdecoration/snowfall/effect');
         ?>
+        <div id="snowflakes-container" ></div>
         <script type="text/javascript">
-        //        'use strict';
             require(['jquery'], function ($) {
                 $(document).ready(function () {
-                    var numOfSnowflakes = <?php echo $numOfSnowflakes; ?>;
-                    numOfSnowflakes = numOfSnowflakes ? numOfSnowflakes : 30;
-                    var speed = <?php echo $speed; ?>;
-                    var interval = 100 / speed;
-                    var effect = '<?php echo $effect; ?>';
-                    var minSize = <?php echo $minSize; ?>;
-                    var maxSize = <?php echo $maxSize; ?>;
-                    var imgUrls = '<?php echo $snowfallImgUrls; ?>';
-                    var imgUrlArr = imgUrls.split(',');
-                    var imgUrlArrLen = imgUrlArr.length;
+                    function ChristmasSnowfall() {
+                        var step = 1;
+                        var numOfSnowflakes = <?php echo $numOfSnowflakes; ?>;
+                        numOfSnowflakes = numOfSnowflakes ? numOfSnowflakes : 30;
+                        var speed = <?php echo $speed; ?>;
+                        speed = speed ? speed : 5;
+                        var interval = 50 * step / speed;
+                        var effect = '<?php echo $effect; ?>';
+                        effect = effect ? effect : 'cross';
+                        var minSize = <?php echo $minSize; ?>;
+                        minSize = minSize ? minSize : 10;
+                        var maxSize = <?php echo $maxSize; ?>;
+                        maxSize = maxSize ? maxSize : 50;
+                        var imgUrls = '<?php echo $snowfallImgUrls; ?>';
+                        var imgUrlArr = imgUrls.split(',');
+                        var imgUrlArrLen = imgUrlArr.length;
 
-                    for (var i = 0; i < numOfSnowflakes; i++)
-                    {
-                        do {
-                            var size = Math.ceil(Math.random() * maxSize);
-                        } while (size < minSize);
-                        var urlIndex = Math.floor(Math.random() * imgUrlArrLen);
-                        var url = imgUrlArr[urlIndex];
-                        if (effect == 'swing') {
-                            var count = Math.floor(Math.random() * 300);
-                        } else {
-                            var count = '';
-                        }
-                        var snowflakeHtml = '<img class="christmas snowflake" src="' + url + '" style="height:' + size + 'px; width:' + size + 'px;" data-count="' + count + '" />';
-                        $('body').append(snowflakeHtml);
-                    }
 
-                    function InitSnowfall() {
-                        $('.christmas.snowflake').each(function () {
-                            var leftPos = Math.floor(Math.random() * ($(window).width() - $(this).width()));
-                            var topPos = Math.floor(Math.random() * ($(window).height() - $(this).height()));
-                            $(this).css({left: leftPos, top: topPos});
-
-                            var leftInc = (Math.random() * 10 > 5) ? 1 : -1;
-                            $(this).data('dir', leftInc);
-                        });
-
-                    }
-
-                    function Snowfall()
-                    {
-                        $('.christmas.snowflake').each(function (i) {
-                            var left = parseInt($(this).css('left'));
-                            var top = parseInt($(this).css('top'));
+                        for (var i = 0; i < numOfSnowflakes; i++)
+                        {
+                            do {
+                                var size = Math.ceil(Math.random() * maxSize);
+                            } while (size < minSize);
+                            var urlIndex = Math.floor(Math.random() * imgUrlArrLen);
+                            var url = imgUrlArr[urlIndex];
                             if (effect == 'swing') {
-                                if (top >= $(window).height() || left >= $(window).width()) {
-                                    top = 0 - $(this).height();
-                                    left = Math.floor(Math.random() * ($(window).width() - $(this).width()));
-                                }
-                                var count = $(this).data('count');
-                                if (count == 300) {
-                                    $(this).data('dir', 0 - $(this).data('dir'));
-                                    count = 0;
-                                }
-                                $(this).data('count', count + 1);
-                                var leftInc = parseInt($(this).data('dir'));
-                                $(this).css({left: left + leftInc, top: top + 1});
-
-                            } else if (effect == 'cross') {
-                                if (top >= $(window).height() || left >= $(window).width()) {
-                                    top = 0 - $(this).height();
-                                    left = Math.floor(Math.random() * ($(window).width() - $(this).width()));
-                                }
-                                var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : 1;
-                                $(this).css({left: left + leftInc, top: top + 1});
-
-                            } else if (effect == 'suspended') {
-                                if (left == $(window).width()) {    //to right side
-                                    left = 0;
-                                }
-                                if (left + $(this).width() <= 0) {    //to left side
-                                    left = $(window).width();
-                                }
-                                var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : 1;
-                                $(this).css('left', left + leftInc);
+                                var count = Math.floor(Math.random() * 300);
+                            } else {
+                                var count = '';
                             }
-                        });
+                            var snowflakeHtml = '<img class="christmas snowflake" src="' + url + '" style="height:' + size + 'px; width:' + size + 'px;" data-count="' + count + '" />';
+                            $('#snowflakes-container').append(snowflakeHtml);
+                        }
 
+                        function InitSnowfall() {
+                            $('.christmas.snowflake').each(function () {
+                                var leftPos = Math.floor(Math.random() * ($(window).width() - $(this).width()));
+                                var topPos = Math.floor(Math.random() * ($(window).height() - $(this).height()));
+                                $(this).css({left: leftPos, top: topPos});
+
+                                var leftInc = (Math.random() * 10 > 5) ? step : 0 - step;
+                                $(this).data('dir', leftInc);
+                            });
+
+                        }
+
+                        function Snowfall()
+                        {
+                            $('.christmas.snowflake').each(function (i) {
+                                var left = parseInt($(this).css('left'));
+                                var top = parseInt($(this).css('top'));
+                                if (effect == 'swing') {                            //Swing effect
+                                    if (top >= $(window).height() || left >= $(window).width()) {
+                                        top = 0 - $(this).height();
+                                        left = Math.floor(Math.random() * ($(window).width() - $(this).width()));
+                                    }
+                                    var count = $(this).data('count');
+                                    if (count >= 300) {
+                                        $(this).data('dir', 0 - $(this).data('dir'));
+                                        count = 0;
+                                    }
+                                    $(this).data('count', count + step);
+                                    var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : step;
+                                    $(this).css({left: left + leftInc, top: top + step});
+
+                                } else if (effect == 'cross') {                     //Cross effect
+                                    if (top >= $(window).height() || left >= $(window).width()) {
+                                        top = 0 - $(this).height();
+                                        left = Math.floor(Math.random() * ($(window).width() - $(this).width()));
+                                    }
+                                    var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : step;
+                                    $(this).css({left: left + leftInc, top: top + step});
+
+                                } else if (effect == 'suspended') {                 //Suspended effect
+                                    if (left == $(window).width()) {    //to right side
+                                        left = 0;
+                                    }
+                                    if (left + $(this).width() <= 0) {    //to left side
+                                        left = $(window).width();
+                                    }
+                                    var leftInc = $(this).data('dir') ? parseInt($(this).data('dir')) : step;
+                                    $(this).css('left', left + leftInc);
+                                }
+                            });
+
+                        }
+                        InitSnowfall();
+                        setInterval(function () {
+                            Snowfall()
+                        }, interval);
                     }
-                    InitSnowfall();
-                    setInterval(function () {
-                        Snowfall()
-                    }, interval);
+                    ChristmasSnowfall();
                 });
             });
         </script>
