@@ -72,9 +72,7 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         $pattern = $this->getScopeConfig('christmasdecoration/header_image/pattern');
         if ($pattern) {
-//            $patternUrl = $this->_helper->getViewImageUrl('images/header/' . $pattern);
-            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/header/' . $pattern);
-            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/header/' . $pattern, ['area' => 'adminhtml']);
             return $patternUrl;
         }
         return '';
@@ -90,8 +88,7 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         $pattern = $this->getScopeConfig('christmasdecoration/footer_image/pattern');
         if ($pattern) {
-            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/footer/' . $pattern);
-            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/footer/' . $pattern, ['area' => 'adminhtml']);
             return $patternUrl;
         }
         return '';
@@ -107,8 +104,7 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         $pattern = $this->getScopeConfig('christmasdecoration/background_image/pattern');
         if ($pattern) {
-            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/background/' . $pattern);
-            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/background/' . $pattern, ['area' => 'adminhtml']);
             return $patternUrl;
         }
         return '';
@@ -124,8 +120,7 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         }
         $pattern = $this->getScopeConfig('christmasdecoration/moving_image/pattern');
         if ($pattern) {
-            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/moving/' . $pattern);
-            $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+            $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/moving/' . $pattern, ['area' => 'adminhtml']);
             return $patternUrl;
         }
         return '';
@@ -144,13 +139,11 @@ class Decoration extends \Magento\Framework\View\Element\Template {
         if ($pattern) {
             $patternArr = explode(',', $pattern);
             foreach ($patternArr as $item) {
-                $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/snowfall/' . $item);
-                $patternUrl = str_replace('frontend', 'adminhtml', $patternUrl);
+                $patternUrl = $this->getViewFileUrl('Magebuzz_Christmasdecoration::images/snowfall/' . $item, ['area' => 'adminhtml']);
                 $images[] = $patternUrl;
             }
-            return implode(',', $images);
         }
-        return '';
+        return implode(',', $images);
     }
 
 }

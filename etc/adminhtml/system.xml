@@ -55,7 +55,7 @@
                 </field>
                 <field id="num_of_snowflakes" translate="label comment" sortOrder="7" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>Number of Snowflakes</label>
-                    <validate>validate-number-range number-range-10-100</validate>
+                    <validate>validate-digits validate-number-range number-range-10-100</validate>
                     <comment><![CDATA[Input number from 10 to 100]]></comment>
                 </field>
                 <field id="speed" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInStore="1" showInWebsite="1">
@@ -65,12 +65,12 @@
                 </field>
                 <field id="min_size" translate="label comment" sortOrder="9" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>Minimum snowflake size (px)</label>
-                    <validate>validate-number-range number-range-10-100</validate>
+                    <validate>validate-digits validate-number-range number-range-10-100</validate>
                     <comment><![CDATA[Input number from 10 to 100]]></comment>
                 </field>
                 <field id="max_size" translate="label comment" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>Maximum snowflake size (px)</label>
-                    <validate>validate-number-range number-range-10-100</validate>
+                    <validate>validate-digits validate-number-range number-range-10-100</validate>
                     <comment><![CDATA[Input number from 10 to 100]]></comment>
                 </field>
                 <field id="effect" translate="label" type="select" sortOrder="11" showInDefault="1" showInStore="1" showInWebsite="1">
@@ -159,6 +159,7 @@
                 </field>
                 <field id="duration" translate="label" sortOrder="4" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>Duration (second)</label>
+                    <validate>validate-digits validate-greater-than-zero</validate>
                 </field>
                 <field id="speed" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>Speed</label>
